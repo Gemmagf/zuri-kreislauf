@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -e ".[dev]"
+
+      - name: Lint (ruff)
+        run: |
+          ruff check src tests
+          ruff format --check src tests
+
+      - name: Fetch data
+        run: python scripts/download_data.py
+
+      - name: Test (pytest)
+        run: pytest -v --cov=src/zuri_kreislauf --cov-report=term-missing

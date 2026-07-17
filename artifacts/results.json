@@ -1,0 +1,57 @@
+{
+  "data": {
+    "n_months": 78,
+    "date_range": [
+      "2020-01-01",
+      "2026-06-01"
+    ]
+  },
+  "forecast_backtest": {
+    "horizon_1m": {
+      "sarima": {
+        "MAPE_%": 12.56,
+        "MAE": 2297.81
+      },
+      "seasonal_naive": {
+        "MAPE_%": 12.49,
+        "MAE": 2197.47
+      }
+    },
+    "horizon_3m": {
+      "sarima": {
+        "MAPE_%": 13.74,
+        "MAE": 2439.61
+      },
+      "seasonal_naive": {
+        "MAPE_%": 12.66,
+        "MAE": 2193.93
+      }
+    },
+    "horizon_6m": {
+      "sarima": {
+        "MAPE_%": 15.8,
+        "MAE": 2972.29
+      },
+      "seasonal_naive": {
+        "MAPE_%": 11.39,
+        "MAE": 2081.12
+      }
+    }
+  },
+  "anomaly_detection": {
+    "t2_ucl": 22.31,
+    "q_ucl": 8.06,
+    "n_months_flagged_spc": 20,
+    "n_months_flagged_iforest": 8,
+    "n_months_flagged_both": 7
+  },
+  "decision_layer": {
+    "total_chf_all_months": 12656668.0,
+    "total_tco2eq_all_months": -8703.4,
+    "turbine_outage_2021_09_to_2022_04": {
+      "electricity_chf_lost": 18842592.0,
+      "electricity_tco2eq": 9022.1,
+      "heat_chf_offset": -8776092.0
+    }
+  }
+}
