@@ -144,8 +144,9 @@ Requires Python 3.11+. CI (`.github/workflows/ci.yml`) runs ruff + pytest on 3.1
 ## Tech stack
 
 Python, pandas/numpy/scipy, scikit-learn (IsolationForest, robust covariance, PCA),
-statsmodels (SARIMAX), shap-adjacent T2 contribution decomposition, Streamlit + Plotly for
-the dashboard, pytest + ruff + GitHub Actions for CI, hatchling for packaging.
+statsmodels (SARIMAX), a from-scratch Kourti–MacGregor-style T2 contribution decomposition
+(no SHAP dependency — see [Layer 2](#architecture)), Streamlit + Plotly for the dashboard,
+pytest + ruff + GitHub Actions for CI, hatchling for packaging.
 
 ## License
 
