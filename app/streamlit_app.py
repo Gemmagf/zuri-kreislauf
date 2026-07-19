@@ -11,6 +11,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from zuri_kreislauf.data.fetch import ensure_downloaded
 from zuri_kreislauf.data.loader import load_bioabfall_calendar, load_khkw
 from zuri_kreislauf.data.preprocess import MONITORING_COLUMNS, build_intensity_ratios
 from zuri_kreislauf.decision.cost import monthly_impact
@@ -102,6 +103,7 @@ T = {
 
 @st.cache_data
 def get_data():
+    ensure_downloaded()
     khkw = load_khkw()
     ratios = build_intensity_ratios(khkw)
     calendar = load_bioabfall_calendar()
